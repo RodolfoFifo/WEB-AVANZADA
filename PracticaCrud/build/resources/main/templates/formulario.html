@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <div th:replace="base.html :: head"></div>
+    <nav th:replace="base.html :: nav"></nav>
+</head>
+<body>
+    <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div th:if="${estudiante == null}" class="mt-4 mb-4" align="center">
+                <h3 style="width:50%" >Agregar Estudiante</h3><hr style="width:50%">
+            </div>
+            <div th:if="${estudiante != null}" class="mt-4 mb-4" align="center">
+                <h3 style="width:50%" >Editar Estudiante</h3><hr style="width:50%">
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <span th:if="${estudiante != null}">
+                        <form method="post" th:action="'/crud/editar?id=' + ${estudiante.getId()}">
+                            <div class="mb-3 mt-3">
+                                <label class="form-label">Matricula</label>
+                                <input th:value="${estudiante.getMatricula()}" name="matricula" type="number" class="form-control" required>
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <label class="form-label">Nombre</label>
+                                <input th:value="${estudiante.getNombre()}" name="nombre" type="text" class="form-control" required>
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <label class="form-label">Apellido</label>
+                                <input th:value="${estudiante.getApellido()}" name="apellido" type="text" class="form-control" required>
+                            </div>
+                            <div class="mb-3 mt-3">
+                                <label class="form-label">Telefono</label>
+                                <input th:value="${estudiante.getTelefono()}" name="telefono" type="number" class="form-control" required>
+                            </div>
+
+                            <div class="mb-2 mt-3 d-grid">
+                                <button  type="submit" class="btn btn-outline-success mb-2">Aceptar</button>
+                                <a th:href="'/crud/visualizar?id=' + ${estudiante.getId()}" class="btn btn-outline-secondary">Regresar</a>
+                            </div>
+                        </form>
+                    </span>
+                    <span th:if="${estudiante == null}">
+                        <form method="post" action="/crud/agregar">
+
+                                <div class="mb-3 mt-3">
+                                    <label class="form-label">Matricula</label>
+                                    <input name="matricula" type="number" class="form-control" required>
+                                </div>
+                                <div class="mb-3 mt-3">
+                                    <label class="form-label">Nombre</label>
+                                    <input name="nombre" type="text" class="form-control" required>
+                                </div>
+                                <div class="mb-3 mt-3">
+                                    <label class="form-label">Apellido</label>
+                                    <input name="apellido" type="text" class="form-control" required>
+                                </div>
+                                <div class="mb-3 mt-3">
+                                    <label class="form-label">Telefono</label>
+                                    <input name="telefono" type="number" class="form-control" required>
+                                </div>
+                            <div class="mb-3 mt-4 d-grid">
+                                <button  type="submit" class="btn btn-outline-success btn-block mb-2">Aceptar</button>
+                                <a href="/crud/listar" class="btn btn-outline-secondary mb-2">Volver</a>
+                            </div>
+                        </form>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

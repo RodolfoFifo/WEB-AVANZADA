@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <div th:replace="base.html :: head"></div>
+    <nav th:replace="base.html :: nav"></nav>
+</head>
+<body>
+    <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="my-4" align="center">
+                <h3 style="width:50%" >Visualizar Estudiante</h3><hr style="width:50%">
+            </div>
+            <div style="width:50%" class="card border-light">
+                <div class="card-header">Datos del estudiante</div>
+                <div class="card-body">
+                    <div class="my-4 mx-3">
+                        <div class="container mb-4 py-3 px-5 border">
+                            <div class="row">
+                                <div class="col"><h5><b>Nombre </b></h5></div>
+                                <div align="center"  class="col"><h5 th:text="${estudiante.getNombre()}"></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col"><h5><b>Apellido</b></h5></div>
+                                <div align="center" class="col"><h5 th:text="${estudiante.getApellido()}"></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col"><h5><b>Matricula</b></h5></div>
+                                <div align="center" class="col"><h5 th:text="${estudiante.getMatricula()}"></h5></div>
+                            </div>
+                            <div class="row">
+                                <div class="col"><h5><b>Telefono</b></h5></div>
+                                <div align="center" class="col"><h5 th:text="${estudiante.getTelefono()}"></h5></div>
+                            </div>
+                        </div>
+
+                        <div class="d-grid">
+                            <a th:href="'/crud/editar?id=' + ${estudiante.getId()}" class="btn btn-outline-success mb-2">Editar</a>
+                            <a th:href="'/crud/eliminar?id=' + ${estudiante.getId()}" class="btn btn-outline-danger mb-2 ">Borrar</a>
+                            <a href="/crud/listar" class="btn btn-outline-secondary mb-2">Volver</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

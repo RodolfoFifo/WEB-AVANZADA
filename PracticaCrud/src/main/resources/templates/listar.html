@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <div th:replace="base.html :: head"></div>
+    <nav th:replace="base.html :: nav"></nav>
+</head>
+<body>
+    <div class="container h-100">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div align="center">
+                <h3 style="width:50%" >Listado Estudiante</h3><hr style="width:50%">
+            </div>
+            <div class="d-grid">
+                <a href="/crud/agregar" class="btn btn-outline-primary btn-block mb-2 bi bi-person-add">Agregar Estudiante</a>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead align="center">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Matricula</th>
+                                <th>Telefono</th>
+                            </tr>
+                        </thead>
+                        <tbody align="center">
+                            <tr style="cursor:pointer" th:onclick="window.location = '/crud/visualizar?id=' + [[${e.getId()}]]" th:each="e:${estudiantes}">
+                                <td th:text="${e.getId()}"></td>
+                                <td th:text="${e.getNombre()}"></td>
+                                <td th:text="${e.getApellido()}"></td>
+                                <td th:text="${e.getMatricula()}"></td>
+                                <td th:text="${e.getTelefono()}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="mt-4 mb-2" align="center" th:if="${estudiantes.size() == 0}">
+                        <h5>No hay estudiantes que visualizar</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
